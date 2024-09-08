@@ -1,5 +1,14 @@
 # CIVICVOICE
 
+#Demo Video of sorting of Blog according to like count.
+
+https://github.com/user-attachments/assets/507f9e5a-322e-45c8-9683-e49614b47a55
+
+
+![image](https://github.com/user-attachments/assets/a1c2439b-52d9-4f8a-8099-b163ecce2944)
+
+
+CivicVoice website is a website where you can raise your voice by writting a blog ,Having more like to your Blog will prioritize it and will be on the top.
 
 It is a MERN (MongoDB, Express.js, React, Node.js) stack application that empowers users to create, view, and search for blog posts. It incorporates robust user authentication using bcrypt, JWT, and cookies, allowing users to log in, register, and engage with the community through comments. Only the author of a post has the authority to update or delete it.
 
