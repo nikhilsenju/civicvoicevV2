@@ -7,6 +7,7 @@ import User from '../models/user.js';
 export const register = async(req,res) =>{
     try{
         const {username,password} = req.body;
+        
         const salt = await bcrypt.genSalt();
         const Hash = await bcrypt.hash(password,salt)
         const newUser = new User({
@@ -23,24 +24,52 @@ export const register = async(req,res) =>{
 
 
 
-export const login = async(req,res) =>{
-    const {username,password} = req.body;
-    const userDoc = await User.findOne({username});
-    if(!userDoc) return res.status(400).json({msg : "Not Found"})
-    const isMatch = await bcrypt.compare(password,userDoc.password)
-    delete userDoc.password
-    if(!isMatch) return res.status(400).json({msg:"Wrong Password"})
-    else{
-        jwt.sign({username,id:userDoc._id},process.env.SECRET,{},(err,token)=>{
-            if(err) throw err;
+export const login = async (req, res) => {
+    console.log(req.body); // To debug request body
+
+    try {
+        const { username, password } = req.body;
+
+        // Validate request body
+        if (!username || !password) {
+            return res.status(400).json({ msg: "Username and password are required" });
+        }
+
+        // Find user in database
+        const userDoc = await User.findOne({ username });
+        if (!userDoc) {
+            return res.status(400).json({ msg: "User not found" });
+        }
+
+        // Compare password
+        const isMatch = await bcrypt.compare(password, userDoc.password);
+        if (!isMatch) {
+            return res.status(400).json({ msg: "Incorrect password" });
+        }
+
+        // Generate token
+        jwt.sign({ username, id: userDoc._id }, process.env.SECRET, {}, (err, token) => {
+            if (err) {
+                throw err;
+            }
+
+            // Send response without exposing the password
+            const { _id, username } = userDoc;  // Destructure needed fields
             res.json({
-                id:userDoc._id,
+                id: _id,
                 username,
                 token
             });
-        })
+        });
+
+    } catch (err) {
+        console.log('nikhil');
+        
+        console.error(err);
+        res.status(500).json({ msg: "Internal server error" });
     }
-}
+};
+
 
 export const check = async(req,res)=>{
     const header = req.headers;

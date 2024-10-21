@@ -19,6 +19,10 @@ const PostSchema = mongoose.Schema({
         ref:'User',
         required : true
     }, 
+    likeCount: {
+        type: Number,
+        default: 0
+    },
     Comments: [{
         user: {
             type: String,

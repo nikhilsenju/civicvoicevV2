@@ -3,10 +3,14 @@ import { format } from 'date-fns';
 import './post.css';
 
 const Post = (props) => {
-    function handleLike(event) {
+    // Function to handle the like button click
+    async function handleLike(event) {
         event.stopPropagation();  // Prevent navigation to the post
         event.preventDefault();   // Prevent the link from being followed
-        props.onLike();           // Call the like handler passed via props
+
+        // Call the like handler passed via props, and pass the post ID
+        
+        await props.onLike(props._id);
     }
 
     return (
@@ -25,7 +29,10 @@ const Post = (props) => {
                     <div className='Content'>
                         <h1>{props.Title}</h1>
                         <div className='info'>
-                            <div className='author'>by {props.Author.username}</div>
+                            <div className='author'>
+                                {/* Safely access Author and username */}
+                                by {props.Author?.username ? props.Author.username : 'Unknown Author'}
+                            </div>
                             &nbsp; &nbsp;
                             <time>{format(new Date(props.updatedAt), 'MMM d yyyy')}</time>
                         </div>
