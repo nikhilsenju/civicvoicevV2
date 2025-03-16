@@ -1,7 +1,14 @@
-.App{
-  padding: 10px;
-  /* background-color: rgb(205, 205, 205); */
+.App {
+  position: relative;
 }
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* Prevent canvas from interfering with clicks */
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

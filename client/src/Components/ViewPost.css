@@ -1,110 +1,209 @@
-*{
-    box-sizing: border-box;
-}
-.Container{
-    background-color: rgb(255, 255, 255,0.7);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  font-family: "VT323", monospace; /* Retro font */
 }
 
-.content{
-    text-align: center;
-    width: 100%;
-    max-width: 100%;
-    overflow-wrap: break-word;
+/* Main Container */
+.box1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation: gradient 15s ease infinite; /* Animated background */
+  color: #e6f1ff; /* Neutral text color */
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glitch Effect for Container */
+.Container {
+  background-color: rgba(15, 25, 50, 0.9);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(0, 255, 255, 0.5); /* Neon blue border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(255, 0, 255, 0.4); /* Neon shadow */
+  position: relative;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-3px, 2px);
+  }
+  20% {
+    transform: translate(0, 0);
+  }
+  30% {
+    transform: translate(2px, -3px);
+  }
+  40% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-1px, 1px);
+  }
+  60% {
+    transform: translate(0, 0);
+  }
+  70% {
+    transform: translate(1px, -2px);
+  }
+  80% {
+    transform: translate(0, 0);
+  }
+  90% {
+    transform: translate(-2px, 1px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Content Styling */
+.content {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  color: #ffffff; /* Bright white text */
+}
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
-.author{
-    font-weight:600;
-    cursor: pointer;
+.author {
+  font-weight: 600;
+  cursor: pointer;
+  color: #00ffff; /* Neon blue */
 }
-.author:hover{
-    text-decoration: underline;
+
+.author:hover {
+  text-decoration: underline;
 }
 
 .Content {
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.Content a{
-    text-decoration: underline;
-    color: blue;
+.Content a {
+  text-decoration: underline;
+  color: #ff00ff; /* Neon magenta links */
 }
 
-.image{
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-}
-img{
-    max-height: 300px;
-    max-width: 70%;
+/* Image Styling */
+.image {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
 
-.buttons{
-    margin: 5px;
-    margin-top: 10px;
-    display: flex;
+img {
+  max-height: 300px;
+  max-width: 70%;
+  border: 2px solid rgba(0, 255, 255, 0.3); /* Subtle neon blue border */
+  border-radius: 5px; /* Slightly rounded corners */
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.btn{
-    background-color: rgb(79, 187, 255);
-    padding: 5px 10px;
-    border-radius: 2px;
-    color: white;
-    cursor: pointer;
-}
-.btn:hover{
-    background-color: rgb(114, 201, 255);
+img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.6); /* Neon magenta glow */
 }
 
-input:hover{
-    border: 2px solid lightskyblue;
-}
-.Comments .btn{
-    margin-top: 5px;
-}
-
-.user{
-    font-weight: 700;
-    font-size: large;
-    color: rgb(10, 170, 244);
+/* Button Styling */
+.buttons {
+  margin: 5px;
+  margin-top: 10px;
+  display: flex;
 }
 
-.CommentContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-height: 130px;
-    max-width: 300px;
-    overflow-y: scroll;
+.btn {
+  background-color: rgba(255, 0, 255, 0.8); /* Neon magenta */
+  padding: 8px 15px;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
 }
 
-
-.SingleComment{
-    margin: 10px;
+.btn:hover {
+  background-color: #00ffff; /* Neon blue hover */
+  transform: translateY(-3px); /* Button pops up */
 }
 
-.CommentInfo{
-    display: flex;
-    justify-content: space-between;
-    gap: 5px;
-    align-items: center;
+input:hover {
+  border: 2px solid #ff00ff; /* Neon magenta input focus */
 }
 
-.CommentDate{
-    color: rgb(0, 32, 103);
-    font-size: small;
+.Comments .btn {
+  margin-top: 5px;
+}
+
+/* User Styling */
+.user {
+  font-weight: 700;
+  font-size: large;
+  color: #00ffff; /* Neon blue */
+}
+
+/* Comment Container */
+.CommentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 130px;
+  max-width: 300px;
+  overflow-y: scroll;
+  background-color: rgba(15, 25, 50, 0.8); /* Slightly opaque container */
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 255, 255, 0.4); /* Neon blue border */
+}
+
+/* Single Comment */
+.SingleComment {
+  margin: 10px;
+  color: #ffffff; /* Bright white text for comments */
+  background: rgba(255, 0, 255, 0.1); /* Subtle magenta background */
+  border-left: 4px solid #00ffff; /* Blue accent border */
+  padding-left: 8px;
+  border-radius: 3px;
+}
+
+/* Comment Info */
+.CommentInfo {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+}
+
+.CommentDate {
+  color: #00ffff; /* Neon blue for dates */
+  font-size: small;
 }

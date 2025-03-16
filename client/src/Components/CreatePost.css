@@ -1,44 +1,466 @@
-* {
-    box-sizing: border-box;
+:root {
+  --primary-color: #0ff;
+  --secondary-color: #f0f;
+  --background-dark: #000813;
+  --text-color: #fff;
+  --glitch-offset: 3px;
+  --scanline-color: rgba(0, 255, 255, 0.1);
+  --crt-shadow: rgba(0, 255, 255, 0.5);
 }
 
+/* Enhanced Glitch Animation */
+@keyframes glitch {
+  0% {
+    text-shadow: 3px 0 var(--primary-color), -3px 0 var(--secondary-color);
+    transform: translate(var(--glitch-offset));
+  }
+  25% {
+    text-shadow: -3px 0 var(--primary-color), 3px 0 var(--secondary-color);
+  }
+  50% {
+    text-shadow: 3px 0 var(--primary-color), -3px 0 var(--secondary-color);
+    transform: translate(calc(var(--glitch-offset) * -1));
+  }
+  75% {
+    text-shadow: -3px 0 var(--primary-color), 3px 0 var(--secondary-color);
+  }
+  100% {
+    text-shadow: 3px 0 var(--primary-color), -3px 0 var(--secondary-color);
+    transform: translate(0);
+  }
+}
+
+/* CRT Screen Effect */
+@keyframes flicker {
+  0% {
+    opacity: 0.9;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  25% {
+    opacity: 0.95;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  35% {
+    opacity: 0.85;
+  }
+  40% {
+    opacity: 0.9;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  55% {
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.9;
+  }
+  65% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.95;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  95% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Main Container with CRT Effect */
 .createpost {
-    padding: 10px;
-    margin: 0 auto;
-    text-align: center;
-    justify-content: center;
+  background: var(--background-dark);
+  color: var(--text-color);
+  padding: 2rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  animation: flicker 0.15s infinite;
+  box-shadow: 0 0 20px var(--crt-shadow);
+  max-width: 800px;
+  margin: 2rem auto;
 }
 
+/* CRT Scanline Effect */
+.createpost::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    0deg,
+    var(--scanline-color) 0%,
+    var(--scanline-color) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  animation: scanline 10s linear infinite;
+  pointer-events: none;
+}
+
+/* Retro Header */
+.createpost h1 {
+  color: var(--primary-color);
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  text-shadow: 2px 2px var(--secondary-color);
+  animation: glitch 2s infinite;
+}
+
+/* Retro Input Fields */
+.createpost input[type="text"] {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-family: "Courier New", monospace;
+  letter-spacing: 1px;
+  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.createpost input[type="text"]:focus {
+  box-shadow: 0 0 15px var(--primary-color),
+    inset 0 0 10px rgba(0, 255, 255, 0.2);
+  border-color: var(--secondary-color);
+  outline: none;
+}
+
+/* Retro File Input */
+.createpost input[type="file"] {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px dashed var(--primary-color);
+  padding: 1rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+}
+
+/* Rich Text Editor Retro Style */
+.QuillContent {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-family: "Courier New", monospace;
+  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.ql-toolbar {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: var(--primary-color) !important;
+}
+
+.ql-container {
+  border-color: var(--primary-color) !important;
+}
+
+/* Button Styles */
+.Btn {
+  background: var(--background-dark);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+  position: relative;
+  margin-top: 1rem;
+  width: 200px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px),
+    0 10px
+  );
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Button Text */
+.Btn span {
+  color: var(--primary-color);
+  font-weight: bold;
+  position: relative;
+  z-index: 10;
+  text-shadow: 0 0 10px var(--primary-color);
+  transition: all 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+/* Cyberpunk Border Effect */
+.Btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color),
+    var(--primary-color)
+  );
+  z-index: 1;
+  animation: borderRotate 4s linear infinite;
+}
+
+.Btn::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: var(--background-dark);
+  z-index: 2;
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px),
+    0 8px
+  );
+}
+
+/* Scan Line Effect */
+.Btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(0, 255, 255, 0.05) 0.5%,
+    transparent 1%
+  );
+  animation: scanline 10s linear infinite;
+}
+
+/* Hover Effects */
+.Btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--primary-color);
+}
+
+.Btn:hover span {
+  color: var(--primary-color);
+  text-shadow: 0 0 15px var(--primary-color);
+  animation: textGlitch 0.3s infinite;
+}
+
+.Btn:hover::before {
+  animation: borderRotate 2s linear infinite;
+}
+
+.Btn:active {
+  transform: translateY(1px);
+}
+
+/* Disabled State */
+.Btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.Btn:disabled span {
+  color: var(--primary-color);
+  animation: none;
+}
+
+/* Animations */
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(50%);
+  }
+}
+
+@keyframes textGlitch {
+  0% {
+    transform: translate(0);
+    text-shadow: 0 0 15px var(--primary-color);
+  }
+  25% {
+    transform: translate(-1px, 1px);
+    text-shadow: 0 0 15px var(--secondary-color);
+  }
+  50% {
+    transform: translate(1px, -1px);
+    text-shadow: 0 0 15px var(--primary-color);
+  }
+  75% {
+    transform: translate(-1px, -1px);
+    text-shadow: 0 0 15px var(--secondary-color);
+  }
+  100% {
+    transform: translate(0);
+    text-shadow: 0 0 15px var(--primary-color);
+  }
+}
+
+/* Add a glitch effect on hover */
+@keyframes glitchEffect {
+  0% {
+    clip-path: inset(0 0 0 0);
+  }
+  2% {
+    clip-path: inset(10% 0 85% 0);
+  }
+  4% {
+    clip-path: inset(85% 0 15% 0);
+  }
+  6% {
+    clip-path: inset(15% 0 70% 0);
+  }
+  8% {
+    clip-path: inset(70% 0 20% 0);
+  }
+  10% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.Btn:hover::after {
+  animation: glitchEffect 2s infinite;
+}
+
+/* Loading State Animation */
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.Btn:disabled::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 255, 0.2),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+/* Error Message with Retro Style */
+.error-message {
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid #f00;
+  color: #f00;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-family: "Courier New", monospace;
+  animation: glitch 1s infinite;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Additional Retro Effects */
+.hover-scale:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px var(--primary-color);
+  animation: glitch 0.3s infinite;
+}
+
+/* Form Container */
 form {
-    width: 100%;
-    padding: 10px;
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--crt-shadow);
 }
 
-input {
-    display: block;
-    margin-bottom: 5px;
-    height: 30px;
-    outline: none;
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    background-color: gainsboro;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .createpost {
+    padding: 1rem;
+    margin: 1rem;
+  }
 
-.Btn{
-    background-color: rgb(79, 187, 255);
-    padding: 5px;
-    border-radius: 2px;
-    color: white;
-    cursor: pointer;
-    border: 0;
-    margin-top: 10px;
-    width: 100%;
-}
-.Btn:hover{
-    background-color: rgb(114, 201, 255);
-}
-.QuillContent{
-    background-color: whitesmoke;
+  .createpost h1 {
+    font-size: 2rem;
+  }
 }

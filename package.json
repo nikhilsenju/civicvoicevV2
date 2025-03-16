@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@nextui-org/card": "^2.0.34",
+    "@nextui-org/react": "^2.4.8",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^11.11.10",
+    "lucide-react": "^0.453.0",
+    "particles.js": "^2.0.0",
+    "react-router-dom": "^6.27.0",
+    "shadcn-ui": "^0.2.3",
+    "tailwind-merge": "^2.5.4"
+  }
+}
